@@ -1,0 +1,113 @@
+import React, { useState } from 'react';
+import { Cat, Heart, CupSoda, Shield, Droplet, Stethoscope, DollarSign, Calculator } from 'lucide-react';
+
+// Cat care tips data
+const catCareTips = [
+  {
+    icon: <Heart />,
+    title: 'Basic Care',
+    tips: [
+      'Provide fresh water daily',
+      'Feed a balanced, age-appropriate diet',
+      'Ensure regular exercise and playtime',
+      'Give plenty of love and attention'
+    ]
+  },
+  {
+    icon: <CupSoda />,
+    title: 'Nutrition',
+    tips: [
+      'Choose high-quality cat food',
+      'Avoid human foods like chocolate, onions, and grapes',
+      'Measure food portions to prevent obesity',
+      'Provide fresh water at all times'
+    ]
+  },
+  {
+    icon: <Shield />,
+    title: 'Health',
+    tips: [
+      'Schedule annual vet check-ups',
+      'Keep vaccinations up to date',
+      'Watch for changes in behavior or appetite',
+      'Maintain a regular deworming schedule'
+    ]
+  },
+  {
+    icon: <Droplet />,
+    title: 'Grooming',
+    tips: [
+      'Brush your cat regularly',
+      'Trim nails every 2-3 weeks',
+      'Clean ears and check for infections',
+      'Dental care is important - brush teeth or use dental treats'
+    ]
+  },
+  {
+    icon: <Stethoscope />,
+    title: 'Emergency Care',
+    tips: [
+      'Keep vet contact information easily accessible',
+      'Know the location of nearest 24-hour emergency vet',
+      'Learn basic first aid for cats',
+      'Watch for signs of distress or illness'
+    ]
+  }
+];
+
+// Main App Component
+export default function CatCareApp() {
+  const [selectedCategory, setSelectedCategory] = useState(catCareTips[0]);
+
+  return (
+    <div className="min-h-screen bg-gray-100 p-6 flex flex-col items-center">
+      <header className="text-center mb-8">
+        <h1 className="text-4xl font-bold text-gray-800 flex items-center justify-center gap-4">
+          <Cat size={48} className="text-orange-500" /> Cat Care Guide
+        </h1>
+        <p className="text-gray-600 mt-2">Your comprehensive guide to caring for your feline friend</p>
+      </header>
+
+      <div className="w-full max-w-4xl bg-white shadow-lg rounded-lg overflow-hidden">
+        {/* Category Selector */}
+        <div className="flex border-b">
+          {catCareTips.map((category) => (
+            <button
+              key={category.title}
+              onClick={() => setSelectedCategory(category)}
+              className={`flex-1 p-4 flex items-center justify-center gap-2 
+                ${selectedCategory.title === category.title 
+                  ? 'bg-orange-500 text-white' 
+                  : 'hover:bg-gray-100 text-gray-700'}`}
+            >
+              {category.icon}
+              {category.title}
+            </button>
+          ))}
+        </div>
+
+        {/* Tips Display */}
+        <div className="p-6">
+          <h2 className="text-2xl font-semibold mb-4 text-gray-800">
+            {selectedCategory.title} Tips
+          </h2>
+          <ul className="space-y-3">
+            {selectedCategory.tips.map((tip, index) => (
+              <li 
+                key={index} 
+                className="bg-gray-50 p-3 rounded-md flex items-center gap-3"
+              >
+                <span className="text-orange-500">●</span>
+                {tip}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      <footer className="mt-8 text-center text-gray-600">
+        <p>Remember: Every cat is unique. Always consult with a veterinarian for personalized advice.</p>
+      </footer>
+    </div>
+  );
+}
