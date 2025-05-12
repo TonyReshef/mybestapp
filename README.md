@@ -1,6 +1,6 @@
 **Your BEST Web Application**
 
-🌟** Project Overview**
+🌟 **Project Overview**
 This is a secure, simple web application developed as part of a cybersecurity and web development learning exercise. 
 The project demonstrates best practices in web development, AI-assisted coding, and information security.
 
